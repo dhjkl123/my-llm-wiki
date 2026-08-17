@@ -1,12 +1,24 @@
-# 2nd Brain Template
+# 공개 AIDD 개발 워크플로 의사결정 위키
+
+**AIDD Workflow Evidence Wiki**
 
 [English](README.md) | **한국어**
 
-> 흩어진 생각과 정보를 한곳에 모으고, 서로 연결해 실제 행동으로 이어 가기 위한 Markdown 기반 지식 관리 템플릿입니다.
+> 공개 공식 근거와 재현 가능한 실험을 버전별로 보존해 AIDD workflow,
+> artifact, 자동화 범위와 Human Approval Gate를 선택하는 Markdown 지식베이스입니다.
 
 ## 프로젝트 소개
 
-이 프로젝트는 메모를 단순히 보관하는 데서 끝내지 않고 **수집 → 정리 → 연결 → 실행 → 회고**의 흐름으로 운영하는 것을 목표로 합니다. 모든 노트는 일반 Markdown 파일로 관리하므로 특정 앱에 종속되지 않으며, Obsidian·VS Code·GitHub 등 원하는 도구에서 사용할 수 있습니다.
+이 저장소는 `ains-lab/2nd-brain-template`의 evidence-first 구조를 사용한다.
+도구 백과사전이 아니라 **상황 → 입력·출력 contract → 자동화 범위 → 사람 승인
+지점 → 적용·비적용 조건**을 근거와 version 범위로 연결한다. 현재 pilot은 BMAD
+Method 공식 tag `v6.11.0`, commit
+`9ce3c397c9b238de96f7365da8019f6f66b059da`에 고정되어 있다.
+
+- 운영 계약: [SCHEMA.md](SCHEMA.md)
+- 조사 backlog: [docs/initial-research-backlog.md](docs/initial-research-backlog.md)
+- canonical catalog: [index.md](index.md)
+- append-only 작업 이력: [log.md](log.md)
 
 ### 전체 아키텍처
 
@@ -26,18 +38,19 @@
 
 ![2nd-Brain Durable Knowledge 기술 스택](docs/tech-stack/second-brain-technology-stack.png)
 
-## 2nd-Brain 주요 기능
+## 현재 pilot 지식 세트
 
-원본을 안전하게 보존하는 것부터 검증된 지식을 다시 활용하는 것까지 하나의 순환으로 연결합니다.
+공식 BMAD repository의 tag·commit permalink와 raw body hash를 보존하고 다음
+의사결정 문서를 제공한다.
 
 | 주요 기능 | 설명 |
 | --- | --- |
-| **원본·출처 보존** | Zotero와 Web Clipper로 논문·웹 자료를 수집하고, `raw/`에 원본·메타데이터·SHA-256을 보존해 언제든 근거로 돌아갑니다. |
-| **검증된 지식 컴파일** | [LLM Wiki](concepts/llm-wiki.md)가 원본을 개념·비교·질의 문서로 구조화하고 출처, 신뢰도, 모순과 연결 관계를 누적합니다. |
-| **연결형 탐색과 편집** | [세컨드 브레인 연구 워크플로](concepts/second-brain-research-workflow.md)에 따라 Obsidian에서 Markdown, 위키링크와 역링크로 장기 지식을 읽고 편집합니다. |
-| **출처 기반 집중 연구** | [NotebookLM 질의 증분 워크플로](queries/notebooklm-query-compounding.md)로 제한된 소스를 질의하고, 재사용 가치가 검증된 결과만 정식 질의 문서에 편입합니다. |
-| **지식그래프 분석** | [UA 지식그래프 워크플로](queries/ua-knowledge-graph-workflow.md)로 군집·브리지·고립 문서와 지식 공백 후보를 찾고 그래프 결과를 원문으로 재검증합니다. |
-| **사람 검증과 피드백** | [연구 피드백 루프](concepts/research-feedback-loop.md)가 탐색 결과를 수용·논쟁·보류·기각으로 판정하고, 승인된 지식만 인덱스와 변경 기록에 환류합니다. |
+| **Workflow contract** | [BMAD v6.11.0 workflow 및 artifact 계약](queries/bmad-v6-11-0-workflow-contracts.md): sprint readiness, Build, Build Auto와 project context의 입력·출력 |
+| **자동화와 승인** | [BMAD v6.11.0 자동화 범위와 Human Approval Gate](comparisons/bmad-v6-11-0-automation-and-human-gates.md): Build/Build Auto, v6 shim migration, review gate 비교 |
+| **Skill 기준선** | [BMAD v6.5.0 BMM 및 Core 스킬 기준선](queries/bmad-v6-5-0-bmm-core-skill-catalog.md): BMM/Core inventory와 변경된 skill만 수집하는 tree fingerprint 정책 |
+| **Skill 버전 비교** | [BMAD v6.5.0에서 v6.11.0까지 BMM/Core skill 변화](comparisons/bmad-v6-5-0-to-v6-11-0-bmm-core-skill-delta.md): v6.10 추가와 v6.11 Build·shim·Core 통합 변화 |
+| **MSA 경계** | [BMAD MSA 및 multi-repository artifact 경계](concepts/bmad-msa-multi-repository-boundaries.md): 공식 범위와 위키의 저신뢰도 경계 모델을 분리 |
+| **근거 보존** | `raw/official-docs/`, `raw/releases/`, `raw/experiments/`에 provenance와 post-frontmatter SHA-256을 기록 |
 
 ## 사전 설치
 

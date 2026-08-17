@@ -1,16 +1,16 @@
 # PROJECT KNOWLEDGE BASE
 
-**Generated:** 2026-07-21
-**Commit:** 28d815e
+**Generated:** 2026-08-17
+**Base Commit:** 9da913e
 **Branch:** main
 
 ## OVERVIEW
 
-- Markdown/Obsidian second-brain template using an evidence-first LLM wiki model.
-- The repository root is the wiki root; no database, service, or build system exists.
+- Public-evidence AIDD workflow decision wiki using an evidence-first Markdown model.
+- The repository root is the wiki root; no database, service, build system, or CI exists.
 - `SCHEMA.md` is the operational contract. `README.md` covers optional tool setup
   but describes a generic PARA layout that is not the current repository structure.
-- Current curated state: 13 raw Markdown records and 8 canonical pages.
+- Current curated state: 86 raw Markdown records and 7 canonical pages.
 
 ## START HERE
 
@@ -30,6 +30,11 @@
 │   ├── transcripts/       # Immutable captured transcript Markdown
 │   ├── web/               # Importer-preserved web captures
 │   ├── youtube/           # Importer-preserved video transcript captures
+│   ├── official-docs/     # Commit-pinned official documentation and excerpts
+│   ├── releases/          # Official release notes and CHANGELOG captures
+│   ├── github-issues/     # Public official-repository issues and discussions
+│   ├── examples/          # Licensed official or reproducible public examples
+│   ├── experiments/       # Reproducible synthetic experiment protocols/results
 │   └── assets/            # Local assets referenced by raw records
 ├── entities/              # Canonical type: entity
 ├── concepts/              # Canonical type: concept
@@ -68,7 +73,7 @@ knowledge-graph state, never canonical evidence.
 - Canonical frontmatter starts at byte zero and contains `title`, `created`,
   `updated`, `type`, `tags`, `sources`, `confidence`, `contested`, and `contradictions`.
 - Preserve `created`; bump `updated` whenever content or metadata changes.
-- Register tags in the `SCHEMA.md` taxonomy before use; 9 tags currently exist.
+- Register tags in the `SCHEMA.md` taxonomy before use; 18 tags currently exist.
 - Use `confidence: high` only when multiple sources support the content.
 - When `contested` is true, record dated, sourced unresolved positions in the body;
   `contradictions` lists conflicting canonical slugs or is empty.
@@ -114,9 +119,9 @@ after 50 entries and add thematic navigation after 200 total entries.
 
 ## COMMANDS AND VALIDATION
 
-No repository-local build, test, lint, CI, release, or executable checker is
-configured. Recorded lint entries are outcomes, not reproducible commands; validate
-the contract directly:
+No repository-local build, CI, or release pipeline is configured. The executable
+validator is `python scripts/validate_wiki.py`; its `PASS` result means zero errors,
+while warnings remain separately reportable. Also validate the contract directly:
 
 - UTF-8, LF, no BOM, final newline, and correct leading frontmatter; documented
   byte-identical legacy raw imports may retain their original missing final LF.
